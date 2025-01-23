@@ -4,12 +4,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializer import WeatherSerializer
 import requests
+from decouple import config
 
 # Create your views here.
 
 class WeatherView(APIView):
     def get(self, request, city):
-        api_key = '7b214261317e41c3b81163324252301'
+        api_key = config("API_KEY")
         base_url = 'http://api.weatherapi.com/v1/current.json'
         params = {
             'key': api_key,
